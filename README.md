@@ -1,1 +1,1 @@
-# Synonyms-Search
+# synonyms-search
