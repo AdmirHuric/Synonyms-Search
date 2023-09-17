@@ -1,6 +1,6 @@
 # synonyms-search
 
-Reeinvet Interview: Vite + React Application
+Reeinvent Interview: Vite + React Application
 
 Before cloning the project, make sure to use:
 
