@@ -13,8 +13,7 @@ type TSynonymsResponse = {
     ok: boolean;
 };
 
-const { apiUrl, messages, statusCodes } = config,
-    { success } = statusCodes,
+const { apiUrl, messages } = config,
     { synonymsListEmpty, synonymsSuccessfullyLoaded, synonymsLoadFailed } = messages;
 
 const getSynonyms = async (sessionToken: string, word: string): Promise<TSynonymsResponse> => {
@@ -25,7 +24,7 @@ const getSynonyms = async (sessionToken: string, word: string): Promise<TSynonym
 
     try {
         const response = await fetch(`${apiUrl}/api/synonyms/get/${word}`, { headers: { Authorization: `Bearer ${sessionToken}` } }),
-            { ok, status } = response,
+            { ok } = response,
             responseData = await response.json(),
             { synonyms, message } = responseData.data as TResponseData,
             hasSynonyms = synonyms?.length > 0;
@@ -34,7 +33,8 @@ const getSynonyms = async (sessionToken: string, word: string): Promise<TSynonym
             synonymsList: hasSynonyms ? synonyms : [],
             ok
         };
-        toast(message || (hasSynonyms && synonymsSuccessfullyLoaded) || synonymsListEmpty, { type: (hasSynonyms && 'success') || 'warning' });
+
+        toast(message || (hasSynonyms && synonymsSuccessfullyLoaded) || synonymsListEmpty, { type: !ok ? 'error' : (hasSynonyms && 'success') || 'warning' });
     } catch (error) {
         toast(synonymsLoadFailed, { type: 'error' });
     } finally {
@@ -52,6 +52,7 @@ const getSynonymsList = async (word: string) => {
     if (!sessionToken) {
         await authorizeUser();
         sessionToken = extractToken();
+
         if (sessionToken) {
             synonymsResponse = await getSynonyms(sessionToken, word);
             return synonymsResponse;

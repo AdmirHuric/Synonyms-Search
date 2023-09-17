@@ -2,3 +2,33 @@
     overflow-y: auto;
     max-height: 600px;
 }
+
+.first-cl {
+    width: 10%;
+    min-width: 30px;
+}
+
+.second-cl {
+    width: 80%;
+}
+
+.third-cl {
+    width: 10%;
+    min-width: 75px;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.clickable:hover {
+    text-decoration: underline;
+}
+
+table tr {
+    vertical-align: middle;
+}
+
+table th, table td {
+    text-align: center;
+}
