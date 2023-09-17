@@ -19,7 +19,7 @@ const user = {
 const config = {
     authorizeUserMaxRetries: 3,
     apiUrl: import.meta.env.VITE_API_URL || 'http://localhost:3000',
-    wordInputDelay: 1000,
+    wordInputDelay: 2000,
     user,
     messages
 };
