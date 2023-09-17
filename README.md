@@ -1,4 +1,4 @@
-# synonyms-search
+# Synonyms-search
 
 Reeinvent Interview: Vite + React Application
 
