@@ -7,11 +7,12 @@ export default function WordInputForm() {
 
     return (
         <Container className="mb-5 p-0 border-bottom">
-            <Form>
+            <Form id="word-input-form">
                 <Row className="pb-3">
                     <Col className="col-lg-10 col-sm-8 col-xs-6">
                         <Form.Group controlId="wordInput">
                             <input
+                                id="word-input"
                                 className={`form-control ${!ok ? 'border-danger' : value.length > 0 && synonymsList.length === 0 ? 'border-warning' : ''}`}
                                 value={value}
                                 onChange={(e) => setWordInput({ ...wordInput, value: e.target.value })}

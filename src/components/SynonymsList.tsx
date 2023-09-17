@@ -5,7 +5,7 @@ export function SynonymsList() {
     const { synonymsList, wordInput, setWordInput, synonymInput, deleteExistingSynonym, loading } = useSynonymsSearch();
 
     return (
-        <Container className="p-0 pb-5 border-bottom">
+        <Container id="synonyms-list" className="p-0 pb-5 border-bottom">
             <Container className="m-3 ms-0 p-0 text-center">
                 <strong>Synonyms List</strong>
             </Container>

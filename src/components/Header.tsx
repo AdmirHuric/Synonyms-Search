@@ -5,7 +5,7 @@ import { useSynonymsSearch } from '../context/SynonymsSearchContext';
 export default function Header() {
     const { loading } = useSynonymsSearch();
     return (
-        <header className="header bg-white shadow-sm mb-3 p-3">
+        <header id="header" className="header bg-white shadow-sm mb-3 p-3">
             <Navbar sticky="top">
                 <Container>
                     <NavbarBrand>Synonyms search</NavbarBrand>
