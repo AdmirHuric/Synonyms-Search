@@ -17,8 +17,7 @@ const user = {
     };
 
 const config = {
-    port: process.env.PORT || 3001,
-    authorizeUserMaxRetries: Number.parseInt(process.env.AUTHORIZE_USER_MAX_RETRIES) || 3,
+    authorizeUserMaxRetries: 3,
     apiUrl: process.env.API_URL || 'http://localhost:3000',
     wordInputDelay: 1000,
     user,
