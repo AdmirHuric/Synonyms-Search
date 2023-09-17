@@ -9,7 +9,7 @@ Before cloning the project, make sure to use:
 
 After cloning the project run: `npm install`
 
-Start the app with `npm run dev`, this will start the website on `localhost:3001`
+Start the app with `npm run dev`, this will start the app on `localhost:3001`
 
 Build the app with `npm run build`, this will compile app under `/dist` folder
 
