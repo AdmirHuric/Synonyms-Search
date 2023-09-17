@@ -13,4 +13,4 @@ Start the app with `npm run dev`, this will start the website on `localhost:3001
 
 Build the app with `npm run build`, this will compile app under `/dist` folder
 
-Live version of the app is on (https://synonyms-search.onrender.com)
+Live version of the app is on [Render](https://synonyms-search.onrender.com)
