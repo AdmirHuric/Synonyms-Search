@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import { authorizeUser } from './api/actions/users';
 
 import 'react-toastify/dist/ReactToastify.css';
+import './App.css';
 
 function App() {
     useOnMountUnsafe(() => {

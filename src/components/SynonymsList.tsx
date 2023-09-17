@@ -1,8 +1,6 @@
 import { Button, Container, Table } from 'react-bootstrap';
 import { useSynonymsSearch } from '../context/SynonymsSearchContext';
 
-import '../styles/synonymsList.css';
-
 export function SynonymsList() {
     const { synonymsList, wordInput, setWordInput, synonymInput, deleteExistingSynonym, loading } = useSynonymsSearch();
 
