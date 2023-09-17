@@ -1,13 +1,8 @@
 import { toast } from 'react-toastify';
-import config from '../../config/config';
 import Cookies from 'js-cookie';
-import extractToken from './utils';
-
-type TResponseToken = {
-    token: string;
-    expiresIn: number;
-    message: string;
-};
+import { extractToken } from './utils';
+import { TResponseToken } from './types';
+import config from '../../config/config';
 
 const { user, apiUrl, authorizeUserMaxRetries, messages } = config,
     { userAuthorized, userNotAuthorized } = messages;

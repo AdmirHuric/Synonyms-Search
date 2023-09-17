@@ -10,12 +10,10 @@ const user = {
         userAuthorized: 'User Authorized',
         userNotAuthorized: 'User not authorized, please try again later.',
         synonymsSuccessfullyLoaded: 'Synonyms successfully loaded.',
-        synonymsListEmpty: 'This word does not have any synonyms yet, please add one.',
-        synonymsLoadFailed: 'Could not get synonyms list.'
-    },
-    statusCodes = {
-        success: 200,
-        unproccessable: 422
+        synonymsListEmpty: 'This word does not have synonyms, please add one.',
+        synonymsLoadFailed: 'Could not get synonyms list.',
+        addNewSynonymFailed: 'Could not add new synonym.',
+        deleteSynonymFailed: 'Could not delete synonym.'
     };
 
 const config = {
@@ -24,8 +22,7 @@ const config = {
     apiUrl: process.env.API_URL || 'http://localhost:3000',
     wordInputDelay: 1000,
     user,
-    messages,
-    statusCodes
+    messages
 };
 
 export default config;

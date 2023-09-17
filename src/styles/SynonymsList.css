@@ -1,6 +1,7 @@
 .table-responsive {
     overflow-y: auto;
     max-height: 600px;
+    border: 1px solid #dee2e6;
 }
 
 .first-cl {
@@ -25,8 +26,18 @@
     text-decoration: underline;
 }
 
+table {
+    border-collapse: inherit !important;
+}
+
 table tr {
     vertical-align: middle;
+    
+}
+
+table th {
+   position: sticky;
+   top:0;
 }
 
 table th, table td {

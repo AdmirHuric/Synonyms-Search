@@ -1,8 +1,8 @@
 import { Container, Form, Row, Col, Button } from 'react-bootstrap';
 import { useSynonymsSearch } from '../context/SynonymsSearchContext';
 
-export default function WordForm() {
-    const { wordInput, setWordInput, loading, synonymsList } = useSynonymsSearch(),
+export default function WordInputForm() {
+    const { wordInput, setWordInput, synonymInput, setSynonymInput, loading, synonymsList } = useSynonymsSearch(),
         { value, typing, ok } = wordInput;
 
     return (
@@ -22,7 +22,11 @@ export default function WordForm() {
                         </Form.Group>
                     </Col>
                     <Col className="col-lg-2 col-sm-4 col-xs-6">
-                        <Button disabled={value.length === 0 || typing || loading} className="float-end">
+                        <Button
+                            className="float-end"
+                            disabled={value.length === 0 || typing || loading || synonymInput.showModal}
+                            onClick={() => setSynonymInput({ ...synonymInput, showModal: true })}
+                        >
                             Add new synonym
                         </Button>
                     </Col>

@@ -8,6 +8,7 @@ import About from './pages/About';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { authorizeUser } from './api/actions/users';
+
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
