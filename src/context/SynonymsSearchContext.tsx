@@ -46,39 +46,36 @@ const SynonymsSearchProvider = ({ children }: TSynonymsSearchProviderProps) => {
         [synonymsList, setSynonymsList] = useState<string[]>([]),
         [loading, setLoading] = useState(false);
 
-    const addNewSynonym = () => {
+    const addNewSynonym = async () => {
         const word = wordInput.value,
             synonym = synonymInput.value;
 
         if (word && synonym) {
             setLoading(true);
+            const response: TSynonymsResponse = await addSynonym({ word, synonym });
 
-            addSynonym({ word, synonym }).then((response: TSynonymsResponse) => {
-                if (!response.ok) {
-                    setSynonymInput({ ...synonymInput, ok: false });
-                } else {
-                    setSynonymInput({ ...synonymInput, ok: true, showModal: false });
-                    setSynonymsList(response.synonymsList);
-                }
+            if (!response.ok) {
+                setSynonymInput({ ...synonymInput, ok: false });
+            } else {
+                setSynonymInput({ ...synonymInput, ok: true, showModal: false });
+                setSynonymsList(response.synonymsList);
+            }
 
-                setLoading(false);
-            });
+            setLoading(false);
         }
     };
 
-    const deleteExistingSynonym = (synonym: string) => {
+    const deleteExistingSynonym = async (synonym: string) => {
         const word = wordInput.value;
 
         if (word && synonym) {
             setLoading(true);
+            const response = await deleteSynonym({ word, synonym });
 
-            deleteSynonym({ word, synonym }).then((response: TSynonymsResponse) => {
-                if (response.ok) {
-                    setSynonymsList(response.synonymsList);
-                }
-
-                setLoading(false);
-            });
+            if (response.ok) {
+                setSynonymsList(response.synonymsList);
+            }
+            setLoading(false);
         }
     };
 
@@ -93,20 +90,19 @@ const SynonymsSearchProvider = ({ children }: TSynonymsSearchProviderProps) => {
         if (value.length > 0) {
             setWordInput({ ...wordInput, typing: true, ok: true });
 
-            wordInputTimeout = setTimeout(() => {
+            wordInputTimeout = setTimeout(async () => {
                 setLoading(true);
+                const response: TSynonymsResponse = await getSynonymsList(value);
 
-                getSynonymsList(value).then((response: TSynonymsResponse) => {
-                    if (!response.ok) {
-                        setWordInput({ value: '', typing: false, ok: false });
-                        setSynonymsList([]);
-                    } else {
-                        setWordInput({ ...wordInput, typing: false });
-                        setSynonymsList(response.synonymsList);
-                    }
+                if (!response.ok) {
+                    setWordInput({ value: '', typing: false, ok: false });
+                    setSynonymsList([]);
+                } else {
+                    setWordInput({ ...wordInput, typing: false });
+                    setSynonymsList(response.synonymsList);
+                }
 
-                    setLoading(false);
-                });
+                setLoading(false);
             }, config.wordInputDelay);
         } else {
             setWordInput({ ...wordInput, typing: false });

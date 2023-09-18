@@ -24,7 +24,6 @@ const getSynonymsApiCall = async (sessionToken: string, word: string): Promise<T
             synonymsList: hasSynonyms ? synonyms : [],
             ok
         };
-
         toast(message || (hasSynonyms && synonymsSuccessfullyLoaded) || synonymsListEmpty, { type: !ok ? 'error' : (hasSynonyms && 'success') || 'warning' });
     } catch (error) {
         //Error messages from catch close are undescriptive so we show custom message, but we log it here and for rest of api calls
@@ -56,7 +55,6 @@ const addSynonymApiCall = async (sessionToken: string, synonymsBody: TSynonymsBo
             synonymsList: hasSynonyms ? synonyms : [],
             ok
         };
-
         toast(message, { type: !ok ? 'error' : 'success' });
     } catch (error) {
         console.log(error);
@@ -84,12 +82,8 @@ const deleteSynonymApiCall = async (sessionToken: string, synonymsBody: TSynonym
             synonymsList: hasSynonyms ? synonyms : [],
             ok
         };
-
         toast(message, { type: !ok ? 'error' : 'success' });
-
-        if (!hasSynonyms) {
-            toast(synonymsListEmpty, { type: 'warning' });
-        }
+        !hasSynonyms && toast(synonymsListEmpty, { type: 'warning' });
     } catch (error) {
         console.log('error');
         toast(deleteSynonymFailed, { type: 'error' });
