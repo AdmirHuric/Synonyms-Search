@@ -9,7 +9,7 @@ export default function WordInputForm() {
         <Container className="mb-5 p-0 border-bottom">
             <Form id="word-input-form">
                 <Row className="pb-3">
-                    <Col className="col-lg-10 col-sm-8 col-xs-6">
+                    <Col className="col-lg-9 col-sm-7 col-xs-6">
                         <Form.Group controlId="wordInput">
                             <input
                                 id="word-input"
@@ -22,14 +22,17 @@ export default function WordInputForm() {
                             <Form.Text className="text-muted">Search for synonyms</Form.Text>
                         </Form.Group>
                     </Col>
-                    <Col className="col-lg-2 col-sm-4 col-xs-6">
-                        <Button
-                            className="float-end"
-                            disabled={value.length === 0 || typing || loading || synonymInput.showModal}
-                            onClick={() => setSynonymInput({ ...synonymInput, showModal: true })}
-                        >
-                            Add new synonym
-                        </Button>
+                    <Col className="col-lg-3 col-sm-5 col-xs-6">
+                        <Row className="m-0 mw-100">
+                            <Button
+                                className="float-end"
+                                disabled={value.length === 0 || typing || loading || synonymInput.showModal}
+                                onClick={() => setSynonymInput({ ...synonymInput, showModal: true })}
+                            >
+                                Add new synonym
+                            </Button>
+                            {value.length === 0 ? <Form.Text className="text-muted p-0">Enter word first</Form.Text> : null}
+                        </Row>
                     </Col>
                 </Row>
             </Form>
