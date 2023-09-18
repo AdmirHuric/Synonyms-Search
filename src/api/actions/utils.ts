@@ -6,23 +6,17 @@ const extractToken = (): string | undefined => {
     return Cookies.get('token');
 };
 
-const withSessionToken = async <T>(callback: (sessionToken: string, callbackParams: T) => Promise<TSynonymsResponse>, callbackParams: T) => {
+const withSessionToken = async <T>(callback: (sessionToken: string, callbackParams: T) => Promise<TSynonymsResponse>, callbackParams: T): Promise<TSynonymsResponse> => {
     let sessionToken: string | undefined = extractToken(),
-        synonymsResponse: TSynonymsResponse = {
+        synonymsResponse: TSynonymsResponse | undefined = {
             synonymsList: [],
             ok: false
         };
 
     if (!sessionToken) {
         await authorizeUser();
-        sessionToken = extractToken();
-
-        if (sessionToken) {
-            synonymsResponse = await callback(sessionToken, callbackParams);
-            return synonymsResponse;
-        } else {
-            return synonymsResponse;
-        }
+        synonymsResponse = await withSessionToken(callback, callbackParams);
+        return synonymsResponse;
     } else {
         synonymsResponse = await callback(sessionToken, callbackParams);
         return synonymsResponse;
